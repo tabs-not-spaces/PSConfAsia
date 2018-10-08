@@ -4,8 +4,7 @@ $requestBody = Get-Content $req -Raw | ConvertFrom-Json
 $name = $requestBody.name
 
 # GET method: each querystring parameter is its own variable
-if ($req_query_blog) 
-{
+if ($req_query_blog) {
     [string[]]$blogs = $req_query_blog
 }
 else {
@@ -36,6 +35,7 @@ function Get-WordPressPostSummary {
                 foreach ($post in $jsonContent) {
                     $result += [PSCustomObject]@{
                         Date    = get-date $($post.date)
+                        Site    = $url
                         Link    = [System.Web.HttpUtility]::HtmlDecode($post.link)
                         Title   = [System.Web.HttpUtility]::HtmlDecode($post.title.rendered)
                         Excerpt = [System.Web.HttpUtility]::HtmlDecode($post.excerpt.rendered) `
