@@ -35,7 +35,7 @@ function Get-WordPressPostSummary {
                 foreach ($post in $jsonContent) {
                     $result += [PSCustomObject]@{
                         Date    = get-date $($post.date)
-                        Site    = $url
+                        Site    = $blog
                         Link    = [System.Web.HttpUtility]::HtmlDecode($post.link)
                         Title   = [System.Web.HttpUtility]::HtmlDecode($post.title.rendered)
                         Excerpt = [System.Web.HttpUtility]::HtmlDecode($post.excerpt.rendered) `
